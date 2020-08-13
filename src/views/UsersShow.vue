@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
+    <h2>Username: {{ this.user.username }}</h2>
+    <p>Email: {{ this.user.email }}</p>
   </div>
 </template>
 
@@ -16,18 +16,19 @@ export default {
   data: function () {
     return {
       message: "Users Show!",
-      users: [],
+      user: {},
     };
   },
   created: function () {
-    this.usersIndex();
+    this.usersShow();
   },
   methods: {
-    usersIndex: function () {
-      console.log("indexing users");
-      axios.get("/api/users").then((response) => {
-        console.log(response);
-        this.users = response.data;
+    usersShow: function () {
+      console.log("showing users");
+      console.log(this.$route.params.id);
+      axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+        console.log(response.data);
+        this.user = response.data;
       });
     },
   },
