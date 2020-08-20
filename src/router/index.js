@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import UsersIndex from '../views/UsersIndex.vue'
 import UsersCreate from '../views/UsersCreate.vue'
 import UsersShow from '../views/UsersShow.vue'
+import Login from '../views/Login.vue'
+import SessionNew from '../views/SessionNew.vue'
 
 Vue.use(VueRouter)
 
@@ -32,9 +34,19 @@ const routes = [
     component: UsersCreate
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
     path: '/users/:id',
     name: 'UsersShow',
     component: UsersShow
+  },
+  {
+    path: '/sessions',
+    name: 'SessionNew',
+    component: SessionNew
   },
 ]
 
