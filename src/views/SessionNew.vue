@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <h3>Choose Which State You'll Be Spotting Birds</h3>
+    <h3>Where Will You Be Spotting Birds Today?</h3>
     <div v-for="region in regions">
-      <p>{{ region.name }}</p>
-      <!-- <p>Code: {{ region.code }}</p> -->
+      <div this.regionCode = region.code></div>
+      <a v-on:click="regionIndex(region)">{{ region.name }}</a>
     </div>
   </div>
 </template>
@@ -20,22 +20,32 @@ export default {
     return {
       message: "Start a new session!",
       regions: [],
-      regionType: "subnational1",
-      regionCode: "US",
+      regionType: "",
+      regionCode: "",
     };
   },
   created: function () {
-    this.regionIndex();
+    this.statesIndex();
   },
   methods: {
-    regionIndex: function () {
-      var params = {
-        subnational: this.regionType,
-        region: this.regionCode,
-      };
-      console.log("all the regions...");
-      console.log(params);
-      axios.get("/api/regions", params).then((response) => {
+    statesIndex: function () {
+      console.log("states");
+      axios.get("/api/states").then((response) => {
+        console.log(response);
+        this.regions = response.data;
+      });
+    },
+    regionIndex: function (region) {
+      console.log(region.code);
+      axios.get("/api/regions?name=" + region.code).then((response) => {
+        console.log(response);
+        this.regions = response.data;
+      });
+    },
+    // get this part done below. birdsIndex needs to call all the birds in the region
+    birdsIndex: function (region) {
+      console.log(region.code);
+      axios.get("/api/regions?name=" + region.code).then((response) => {
         console.log(response);
         this.regions = response.data;
       });
