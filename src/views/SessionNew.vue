@@ -2,9 +2,18 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h3>Where Will You Be Spotting Birds Today?</h3>
-    <div v-for="region in regions">
-      <div this.regionCode = region.code></div>
-      <a v-on:click="regionIndex(region)">{{ region.name }}</a>
+    <input type="text" v-model="searchTerm">
+    <div v-for="state in orderBy(filterBy(states, searchTerm, 'name'))">
+      <a v-on:click="regionIndex(state)">{{ state.name }}</a>
+    </div>
+    <div v-for="region in orderBy(filterBy(regions, searchTerm, 'name'))">
+      <a v-on:click="birdsIndex(region)">{{ region.name }}</a>
+    </div>
+    <div v-if="birds.length > 0">
+      <button v-on:click="submit">Submit</button>
+    </div>
+    <div v-for="bird in orderBy(filterBy(birds, searchTerm, 'name'))">
+      <a>{{ bird.name }}</a>
     </div>
   </div>
 </template>
@@ -14,14 +23,19 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
   data: function () {
     return {
       message: "Start a new session!",
+      states: [],
       regions: [],
       regionType: "",
       regionCode: "",
+      birds: [],
+      searchTerm: "",
+      sortBy: "",
     };
   },
   created: function () {
@@ -32,24 +46,32 @@ export default {
       console.log("states");
       axios.get("/api/states").then((response) => {
         console.log(response);
-        this.regions = response.data;
+        this.states = response.data;
       });
     },
-    regionIndex: function (region) {
-      console.log(region.code);
-      axios.get("/api/regions?name=" + region.code).then((response) => {
+    regionIndex: function (state) {
+      this.states = [];
+      this.searchTerm = "";
+      console.log(state.code);
+      axios.get("/api/regions?name=" + state.code).then((response) => {
         console.log(response);
         this.regions = response.data;
       });
     },
     // get this part done below. birdsIndex needs to call all the birds in the region
     birdsIndex: function (region) {
-      console.log(region.code);
-      axios.get("/api/regions?name=" + region.code).then((response) => {
+      this.regions = [];
+      this.searchTerm = "";
+      console.log("the birds are coming...");
+      axios.get("/api/birds?name=" + region.code).then((response) => {
         console.log(response);
-        this.regions = response.data;
+        this.birds = response.data;
       });
     },
+    submit: function () {
+      console.log("submitting birds...");
+    },
   },
+  mixins: [Vue2Filters.mixin],
 };
 </script>
