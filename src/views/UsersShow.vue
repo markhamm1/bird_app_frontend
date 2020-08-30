@@ -1,7 +1,32 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>Username: {{ this.user.username }}</h2>
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <div class="cta-inner text-center rounded">
+              <h2 class="section-heading mb-4">
+                <!-- <span class="section-heading-upper">Our Promise</span> -->
+                <span class="section-heading-lower">{{ this.user.username }}</span>
+              </h2>
+              <div v-for="session in this.user.sessions">
+                <p class="mb-0">State: {{ session.state }}</p>
+                <p class="mb-0">County: {{ session.county }}</p>
+                <span class="section-heading-upper">{{moment(session.created_at).format('MMMM Do YYYY, h:mm a')}}</span>
+                <div class="intro-button mx-auto">
+                  <a class="btn btn-primary btn-xl" v-bind:href="'/sessions/' + session.id">View Birds</a>
+                </div>
+                <!-- <p><a v-bind:href="'/sessions/' + session.id">View Birds</a></p> -->
+                <hr>
+              </div>
+              <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- <h2>Username: {{ this.user.username }}</h2>
     <p>Email: {{ this.user.email }}</p>
     <div v-for="session in this.user.sessions">
       <p>State: {{ session.state }}</p>
@@ -9,7 +34,7 @@
       <span>{{moment(session.created_at).format('MMMM Do YYYY, h:mm a')}}</span>
       <p><a v-bind:href="'/sessions/' + session.id">View Birds</a></p>
       <hr>
-    </div>
+    </div> -->
   </div>
 </template>
 

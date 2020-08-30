@@ -1,13 +1,23 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div v-for="session in sessions">
-      <p>State: {{ session.state }}</p>
-      <p>County: {{ session.county }}</p>
-      <span>{{moment(session.created_at).format('MMMM Do YYYY, h:mm a')}}</span>
-      <p><a v-bind:href="'/sessions/' + session.id">View Birds</a></p>
-      <hr>
-    </div>
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <div v-for="session in sessions" class="cta-inner text-center rounded">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-upper">{{moment(session.created_at).format('MMMM Do YYYY, h:mm a')}}</span>
+                <span class="section-heading-lower">State: {{ session.state }}</span>
+                <span class="section-heading-lower">County: {{ session.county }}</span>
+              </h2>
+              <div class="intro-button mx-auto">
+                <a class="btn btn-primary btn-xl" v-bind:href="'/sessions/' + session.id">View Sessions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
