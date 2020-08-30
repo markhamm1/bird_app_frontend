@@ -6,6 +6,8 @@ import UsersCreate from '../views/UsersCreate.vue'
 import UsersShow from '../views/UsersShow.vue'
 import Login from '../views/Login.vue'
 import SessionNew from '../views/SessionNew.vue'
+import UserSessions from '../views/UserSessions.vue'
+import SessionShow from '../views/SessionShow.vue'
 import Logout from "../views/Logout.vue";
 
 Vue.use(VueRouter)
@@ -45,9 +47,19 @@ const routes = [
     component: UsersShow
   },
   {
-    path: '/sessions',
+    path: '/sessions/new',
     name: 'SessionNew',
     component: SessionNew
+  },
+  {
+    path: '/sessions/:id',
+    name: 'SessionShow',
+    component: SessionShow
+  },
+  {
+    path: '/sessions',
+    name: 'UserSessions',
+    component: UserSessions
   },
   {
     path: "/logout",

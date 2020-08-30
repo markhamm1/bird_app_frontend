@@ -4,6 +4,7 @@
     <div v-for="user in users">
       <p>Username: {{ user.username }}</p>
       <p>Email: {{ user.email }}</p>
+      <p><a href="/sessions?user" user.id>View Sessions</a></p>
       <hr>
     </div>
   </div>
