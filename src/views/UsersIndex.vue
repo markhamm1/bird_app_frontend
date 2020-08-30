@@ -4,7 +4,7 @@
     <div v-for="user in users">
       <p>Username: {{ user.username }}</p>
       <p>Email: {{ user.email }}</p>
-      <p><a href="/sessions?user" user.id>View Sessions</a></p>
+      <p><a v-bind:href="'/users/' + user.id">View Sessions</a></p>
       <hr>
     </div>
   </div>
