@@ -6,6 +6,7 @@ import UsersCreate from '../views/UsersCreate.vue'
 import UsersShow from '../views/UsersShow.vue'
 import Login from '../views/Login.vue'
 import SessionNew from '../views/SessionNew.vue'
+import Logout from "../views/Logout.vue";
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/sessions',
     name: 'SessionNew',
     component: SessionNew
+  },
+  {
+    path: "/logout",
+    name: "logout",
+    component: Logout
   },
 ]
 

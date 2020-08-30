@@ -13,8 +13,10 @@
       <button v-on:click="submit">Submit</button>
     </div>
     <div v-for="bird in orderBy(filterBy(birds, searchTerm, 'name'))">
-      <a>{{ bird.name }}</a>
+      <input type="checkbox" id="birdName" v-bind:value=bird.name v-model="checkedBirds">
+      <label for="birdName">{{ bird.name }}</label>
     </div>
+    <!-- <span> {{ checkedBirds }}</span> -->
   </div>
 </template>
 
@@ -36,6 +38,9 @@ export default {
       birds: [],
       searchTerm: "",
       sortBy: "",
+      checkedBirds: [],
+      sessionState: "",
+      sessionCounty: "",
     };
   },
   created: function () {
@@ -52,16 +57,17 @@ export default {
     regionIndex: function (state) {
       this.states = [];
       this.searchTerm = "";
+      this.sessionState = state.name;
       console.log(state.code);
       axios.get("/api/regions?name=" + state.code).then((response) => {
         console.log(response);
         this.regions = response.data;
       });
     },
-    // get this part done below. birdsIndex needs to call all the birds in the region
     birdsIndex: function (region) {
       this.regions = [];
       this.searchTerm = "";
+      this.sessionCounty = region.name;
       console.log("the birds are coming...");
       axios.get("/api/birds?name=" + region.code).then((response) => {
         console.log(response);
@@ -69,7 +75,16 @@ export default {
       });
     },
     submit: function () {
-      console.log("submitting birds...");
+      var params = {
+        birds: this.checkedBirds,
+        state: this.sessionState,
+        county: this.sessionCounty,
+      };
+      console.log(params);
+      axios.post("/api/sessions", params).then((response) => {
+        console.log(response);
+        this.$router.push("/users");
+      });
     },
   },
   mixins: [Vue2Filters.mixin],
