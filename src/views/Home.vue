@@ -14,7 +14,13 @@ export default {
       message: "Welcome to Birding!",
     };
   },
-  created: function () {},
-  methods: {},
+  created: function () {
+    this.redirect();
+  },
+  methods: {
+    redirect: function () {
+      this.$router.push("/login");
+    },
+  },
 };
 </script>

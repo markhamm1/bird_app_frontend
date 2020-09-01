@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h1 class="site-heading text-center text-white d-none d-lg-block">
-      <span class="site-heading-upper text-primary mb-3">A Free Bootstrap 4 Business Theme</span>
-      <span class="site-heading-lower">Business Casual</span>
+      <span class="site-heading-upper text-primary mb-3">Explore the Outdoors from a Bird's Eye View</span>
+      <span class="site-heading-lower">Bobo</span>
     </h1>
 
     <!-- Navigation -->
@@ -27,6 +27,9 @@
             </li>
             <li class="nav-item px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="/login">Login</a>
+            </li>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/logout">Logout</a>
             </li>
           </ul>
         </div>
