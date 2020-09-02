@@ -23,6 +23,8 @@
                 <div v-for="bird in orderBy(filterBy(birds, searchTerm, 'name'))">
                   <input type="checkbox" id="birdName" v-bind:value=bird.name v-model="checkedBirds">
                   <label for="birdName">{{ bird.name }}</label>
+                  <!-- <p><a href="/bird" target="_blank" class="btn btn-primary">View Bird</a></p> -->
+                  <p><router-link :to="'/bird?birdname=' + bird.name" target="_blank" class="btn btn-primary">View Bird</router-link></p>
                 </div>
               </div>
             </div>
@@ -100,6 +102,12 @@ export default {
         console.log(response);
         this.$router.push("/sessions");
       });
+    },
+    viewBird: function () {
+      console.log("viewing bird...");
+      this.$router.push("/bird?birdName=bluejay"((target = "_blank")));
+      // let routeData = this.$router.resolve({ name: "/", query: { data: "someData" } });
+      // window.open(routeData.href, "_blank");
     },
   },
   mixins: [Vue2Filters.mixin],

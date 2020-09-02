@@ -9,6 +9,7 @@ import SessionNew from '../views/SessionNew.vue'
 import UserSessions from '../views/UserSessions.vue'
 import SessionShow from '../views/SessionShow.vue'
 import Logout from "../views/Logout.vue";
+import ViewBird from "../views/ViewBird.vue";
 
 Vue.use(VueRouter)
 
@@ -65,6 +66,11 @@ const routes = [
     path: "/logout",
     name: "logout",
     component: Logout
+  },
+  {
+    path: "/bird",
+    name: "ViewBird",
+    component: ViewBird
   },
 ]
 
