@@ -24,7 +24,18 @@
                   <input type="checkbox" id="birdName" v-bind:value=bird.name v-model="checkedBirds">
                   <label for="birdName">{{ bird.name }}</label>
                   <!-- <p><a href="/bird" target="_blank" class="btn btn-primary">View Bird</a></p> -->
-                  <p><router-link :to="'/bird?birdname=' + bird.name" target="_blank" class="btn btn-primary">View Bird</router-link></p>
+                  <p><button v-on:click="viewBird(bird.name)" class="btn btn-primary">Show Bird</button></p>
+                  <dialog id="bird-details">
+                    <form method="dialog">
+                      <span class="section-heading-lower">{{ bird.name }}</span>
+                      <hr>
+                      <!-- <p>{{currentBird.image_url}}</p> -->
+                      <img v-bind:src="currentBird.image_url" style="width:600px;">
+                      <br>
+                      <button class="btn btn-primary">Close</button>
+                    </form>
+                  </dialog>
+                  <hr>
                 </div>
               </div>
             </div>
@@ -58,6 +69,7 @@ export default {
       checkedBirds: [],
       sessionState: "",
       sessionCounty: "",
+      currentBird: "",
     };
   },
   created: function () {
@@ -103,11 +115,13 @@ export default {
         this.$router.push("/sessions");
       });
     },
-    viewBird: function () {
-      console.log("viewing bird...");
-      this.$router.push("/bird?birdName=bluejay"((target = "_blank")));
-      // let routeData = this.$router.resolve({ name: "/", query: { data: "someData" } });
-      // window.open(routeData.href, "_blank");
+    viewBird: function (name) {
+      console.log(name);
+      axios.get("/api/pictures?name=" + name).then((response) => {
+        console.log(response);
+        this.currentBird = response.data;
+      });
+      document.querySelector("#bird-details").showModal();
     },
   },
   mixins: [Vue2Filters.mixin],
