@@ -6,6 +6,8 @@
           <div class="col-xl-9 mx-auto">
             <div class="cta-inner text-center rounded">
               <h2 class="section-heading mb-4">
+                <span v-if="user.session_count === null" class="section-heading-upper">No Sessions Yet</span>
+                <span v-if="user.session_count >= 1" class="section-heading-upper">Number of Sessions: {{ user.session_count }}</span>
                 <span class="section-heading-lower">{{ this.user.username }}'s Sessions</span>
                 <hr>
                 <div v-for="session in this.user.sessions">
