@@ -49,16 +49,12 @@ export default {
   },
   methods: {
     usersShow: function () {
-      console.log("showing users");
-      console.log(this.$route.params.id);
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         // console.log(response.data);
         this.user = response.data;
       });
     },
     showSessions: function () {
-      console.log("showing sessions");
-      console.log(this.$route.params.id);
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         console.log(response);
         this.sessions = response.data;

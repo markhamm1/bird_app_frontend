@@ -10,7 +10,8 @@
                 <span class="section-heading-lower">Search and Choose</span>
               </h2>
               <div class="mb-0">
-                <input type="text" v-model="searchTerm">
+                <p><input type="text" v-model="searchTerm"></p>
+                
                 <div v-for="state in orderBy(filterBy(states, searchTerm, 'name'))">
                   <a v-on:click="regionIndex(state)">{{ state.name }}</a>
                 </div>
@@ -18,7 +19,8 @@
                   <a v-on:click="birdsIndex(region)">{{ region.name }}</a>
                 </div>
                 <div v-if="birds.length > 0">
-                  <button v-on:click="submit">Submit</button>
+                  <p><button v-on:click="submit" class="btn btn-primary">Submit</button></p>
+                  <hr>
                 </div>
                 <div v-for="bird in orderBy(filterBy(birds, searchTerm, 'name'))">
                   <input type="checkbox" id="birdName" v-bind:value=bird.name v-model="checkedBirds">
@@ -27,10 +29,10 @@
                   <p><button v-on:click="viewBird(bird.name)" class="btn btn-primary">Show Bird</button></p>
                   <dialog id="bird-details">
                     <form method="dialog">
-                      <span class="section-heading-lower">{{ bird.name }}</span>
+                      <span class="section-heading-lower">{{ currentBird.name }}</span>
                       <hr>
                       <!-- <p>{{currentBird.image_url}}</p> -->
-                      <img v-bind:src="currentBird.image_url" style="width:600px;">
+                      <p><img v-bind:src="currentBird.image_url" style="width:600px;"></p>
                       <br>
                       <button class="btn btn-primary">Close</button>
                     </form>
@@ -69,7 +71,7 @@ export default {
       checkedBirds: [],
       sessionState: "",
       sessionCounty: "",
-      currentBird: "",
+      currentBird: {},
     };
   },
   created: function () {
@@ -120,6 +122,7 @@ export default {
       axios.get("/api/pictures?name=" + name).then((response) => {
         console.log(response);
         this.currentBird = response.data;
+        this.currentBird["name"] = name;
       });
       document.querySelector("#bird-details").showModal();
     },

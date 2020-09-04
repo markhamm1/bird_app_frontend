@@ -48,7 +48,7 @@ const routes = [
     component: UsersShow
   },
   {
-    path: '/sessions/new',
+    path: '/new',
     name: 'SessionNew',
     component: SessionNew
   },

@@ -24,7 +24,7 @@
                   <label>Password:</label>
                   <input type="password" class="form-control" v-model="password">
                 </div>
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <p><input type="submit" class="btn btn-primary" value="Submit"></p>
               </form>
               <div class="intro-button mx-auto">
                 <a class="btn btn-primary btn-xl" href="/users/new">Create Account</a>
@@ -59,7 +59,7 @@ export default {
         .then((response) => {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/sessions/new");
+          this.$router.push("/new");
         })
         .catch((error) => {
           this.errors = ["Invalid email or password."];
