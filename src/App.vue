@@ -8,7 +8,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
       <div class="container">
-        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Bobo</a>
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/login">Bobo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,20 +24,16 @@
             <li :class="[currentPage.includes('new') ? activeClass : '', 'nav-item px-lg-4']">
               <a class="nav-link text-uppercase text-expanded" href="/new">New Session</a>
             </li>
-            <li :class="[currentPage.includes('login') ? activeClass : '', 'nav-item px-lg-4']">
+            <li v-if="!isLoggedIn()" :class="[currentPage.includes('login') ? activeClass : '', 'nav-item px-lg-4']">
               <a class="nav-link text-uppercase text-expanded" href="/login">Login</a>
             </li>
-            <li :class="[currentPage.includes('logout') ? activeClass : '', 'nav-item px-lg-4']">
+            <li v-if="isLoggedIn()" :class="[currentPage.includes('logout') ? activeClass : '', 'nav-item px-lg-4']">
               <a class="nav-link text-uppercase text-expanded" href="/logout">Logout</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    
-
-    
 
     <router-view/>
 
@@ -57,11 +53,23 @@ export default {
   data() {
     return {
       activeClass: "active",
+      jwt: localStorage.getItem("jwt"),
     };
   },
+
   computed: {
     currentPage() {
       return this.$route.path;
+    },
+  },
+
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 };

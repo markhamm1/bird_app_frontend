@@ -4,11 +4,9 @@
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
-            <!-- <div class="cta-inner text-center rounded">
-              <h2 class="section-heading mb-4">
-                <MglMap :accessToken="accessToken" :mapStyle="mapStyle" />
-              </h2>
-            </div> -->
+            <div id="app">
+              
+            </div>
             <div class="cta-inner text-center rounded">
               <h2 class="section-heading mb-4">
                 <span v-if="this.sessions.length === null" class="section-heading-lower">You have not started a birding session yet</span>
@@ -38,8 +36,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import Mapbox from "mapbox-gl";
-import { MglMap } from "vue-mapbox";
+import mapboxgl from "mapbox-gl";
 
 export default {
   data: function () {
