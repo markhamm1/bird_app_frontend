@@ -79,9 +79,7 @@ export default {
   },
   methods: {
     statesIndex: function () {
-      console.log("states");
       axios.get("/api/states").then((response) => {
-        console.log(response);
         this.states = response.data;
       });
     },
@@ -89,9 +87,7 @@ export default {
       this.states = [];
       this.searchTerm = "";
       this.sessionState = state.name;
-      console.log(state.code);
       axios.get("/api/regions?name=" + state.code).then((response) => {
-        console.log(response);
         this.regions = response.data;
       });
     },
@@ -99,9 +95,7 @@ export default {
       this.regions = [];
       this.searchTerm = "";
       this.sessionCounty = region.name;
-      console.log("the birds are coming...");
       axios.get("/api/birds?name=" + region.code).then((response) => {
-        console.log(response);
         this.birds = response.data;
       });
     },
@@ -111,16 +105,12 @@ export default {
         state: this.sessionState,
         county: this.sessionCounty,
       };
-      console.log(params);
       axios.post("/api/sessions", params).then((response) => {
-        console.log(response);
         this.$router.push("/sessions");
       });
     },
     viewBird: function (name) {
-      console.log(name);
       axios.get("/api/pictures?name=" + name).then((response) => {
-        console.log(response);
         this.currentBird = response.data;
         this.currentBird["name"] = name;
       });

@@ -38,9 +38,7 @@ export default {
     this.showBird();
   },
   methods: {
-    showBird: function () {
-      console.log("showing bird...");
-    },
+    showBird: function () {},
   },
 };
 </script>

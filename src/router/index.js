@@ -10,16 +10,11 @@ import UserSessions from '../views/UserSessions.vue'
 import SessionShow from '../views/SessionShow.vue'
 import Logout from "../views/Logout.vue";
 import ViewBird from "../views/ViewBird.vue";
-import mapboxgl from 'mapbox-gl';
 import moment from "moment";
+import mapboxgl from "mapbox-gl-vue";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFya2hhbW0xIiwiYSI6ImNrZHo3Nzc5ZzBpeTYycWswdWlmNTJ5eDMifQ.vEJcB-Br21nXtIJ9S5z2zg';
-var map = new mapboxgl.Map({
-  container: 'app',
-  style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-  center: [-74.5, 40], // starting position [lng, lat]
-  zoom: 9 // starting zoom
-});
+
+
 
 
 Vue.use(VueRouter)

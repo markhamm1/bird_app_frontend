@@ -39,9 +39,7 @@ export default {
   },
   methods: {
     usersIndex: function () {
-      console.log("indexing users");
       axios.get("/api/users").then((response) => {
-        console.log(response);
         this.users = response.data;
       });
     },

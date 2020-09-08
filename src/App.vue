@@ -2,13 +2,13 @@
   <div id="app">
     <h1 class="site-heading text-center text-white d-none d-lg-block">
       <span class="site-heading-upper text-primary mb-3">Adventure Awaits</span>
-      <span class="site-heading-lower">Bobo</span>
+      <span class="site-heading-lower">Bird Spotting</span>
     </h1>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
       <div class="container">
-        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/login">Bobo</a>
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/login">Bird Spotting</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,7 +39,7 @@
 
     <footer class="footer text-faded text-center py-5">
       <div class="container">
-        <p class="m-0 small">Copyright &copy; bobobirds.com 2020</p>
+        <p class="m-0 small">Copyright &copy; birdspotting.com 2020</p>
       </div>
     </footer>   
   </div>

@@ -40,9 +40,7 @@ export default {
   },
   methods: {
     sessionShow: function () {
-      console.log("showing session");
       axios.get(`/api/sessions/${this.$route.params.id}`).then((response) => {
-        console.log(response);
         this.session = response.data;
       });
     },
